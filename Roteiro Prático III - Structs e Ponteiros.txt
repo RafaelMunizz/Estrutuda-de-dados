@@ -1,0 +1,179 @@
+Instituto Federal de Educação, Ciência e Tecnologia da Paraíba
+Campus Campina Grande
+Cursos de Engenharia de Computação: Lab. de Estruturas de Dados e Algoritmos
+
+Roteiro Prático III - Structs e Ponteiros
+
+Turma B
+
+Grupo:
+Maria Eduarda Cunha Silva Araújo
+Rafael Victor Cordeiro Muniz
+
+---------------------- Questão 1 ----------------------
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct{
+  int idade, indice;
+  char nome[50];
+}aluno;
+
+int main(void) {
+  aluno lista[5];
+  
+  int  i;
+
+  for(i=0; i<5; i++ ){
+    aluno a1; 
+  
+    printf("\nEscreva o seu nome:");
+    scanf("%s", a1.nome);
+    
+    printf("\nEscreva sua idade: ");
+    scanf("%d", &a1.idade);
+
+    a1.indice= i+1;
+
+    lista[i]=a1;
+
+  }
+
+  for(i=0; i<5; i++){
+    if(lista[i].indice == 2){
+      printf("Linha 2 -> Nome: %s, Idade: %d", lista[i].nome, lista[i].idade);
+
+    }
+  }
+  
+  return 0;
+
+}
+
+---------------------- Questão 2 ----------------------
+#include <stdio.h>
+#include <string.h>
+struct livro {
+  int na;
+  char titulo[30];
+  char autor[30];
+  int doado;
+};
+void mostrar(struct livro b){
+  printf("Número de Acesso-\t%d\nlivro-\t%s\nautor-\t%s\n", b.na, b.titulo, b.autor);
+  if(b.doado == 0) {
+    printf("doado-\tNão\n");
+  }
+  else {
+    printf("doado-\tSim\n");
+  }
+}
+void adicionar(struct livro b ){
+  /*b.na ;
+  b.titulo ;
+  b.autor ;
+  b.doado = 0;*/
+
+
+//TODO
+//doado receberá 0 por padrão
+}
+
+//passando array
+void livro_por_autor(struct livro *b, int numero_de_livros, char aut[]){
+  int i;
+  for(i=0; i<numero_de_livros; i++){
+    if(strcmp((b+i)->autor, aut)){
+      mostrar(*(b+i));
+    }
+  }
+}
+
+void livro_por_titulo(struct livro *b, int numero_de_livros, char tit[]){
+  int i;
+  for (i=0; i<numero_de_livros; i++){
+    if (strcmp((b+1)->titulo, tit)){
+      mostrar(*(b+i));
+    }
+  }
+}
+
+void doar_um_livro(struct livro b){
+  b.doado =1;
+}
+char titulo[40];
+char autor[30];
+int num,nam;
+int main(){
+  printf("Bem vindo! Escolha uma opção para continuar:\n\n");
+  printf("1 - Exibir informações do livro\n2 - Adicione um novo livro\n3 - Exibir todos os livros na biblioteca de um autor em particular\n4 - Exibir o número de livros de um título específico\n5 - Exibir o número total de livros na biblioteca \n6 - Colocar em circulação um livro\n");
+  scanf("%d", &num);
+  switch(num){
+    case 1:
+      printf("Qual livro você procura?\n");
+      printf("1.Procurar pelo nome do autor.\n2.Procurar pelo titulo do livro.\n");
+      scanf("%d", &nam);
+      if (nam == 1){
+        printf("Digite o nome do autor:\n");
+        scanf("%s", autor);
+      } else if (nam==2){
+        printf("Digite o titulo do livro:\n");
+        scanf("%s", titulo);
+      }
+    break;
+    case 2:
+      printf("Titulo do livro:");
+      scanf("%s", titulo);
+      printf("nome do autor do livro");
+      scanf("%s",autor);
+    break;
+
+    case 3:
+      printf("Digite o nome do autor:");
+      scanf("%s", autor);
+     
+    break;
+
+    case 4:
+      printf("Digite o titulo do livro:\n");
+      scanf("%s", titulo);
+    break;
+
+    case 5:
+      printf("e");
+    break;
+
+    case 6:
+      printf("f");
+    break;
+
+    default:
+      printf("A opção escolhida é inválida.\n");
+  }
+  
+return 0;
+}
+ 
+---------------------- Questão 3 ----------------------
+
+#include <stdio.h>
+#include <math.h>
+
+void calc_esfera(float raio, float *area, float *volume){
+  float pi=3.14; 
+  *area = 4 * pi* pow(raio,2);
+  *volume = (4/3) * pi * pow(raio,3);  
+
+  printf("Area = %f" ,*area);
+  printf("\nVolume = %f" ,*volume);
+}
+
+int main(void){
+  float raio, area, volume;
+  scanf("%f", &raio);
+
+  calc_esfera(raio, &area, &volume);
+  
+  return 0;
+}
